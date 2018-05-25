@@ -31,12 +31,14 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(164, 148);
+            this.radioButton1.Location = new System.Drawing.Point(176, 158);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(88, 17);
             this.radioButton1.TabIndex = 0;
@@ -47,7 +49,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(425, 148);
+            this.radioButton2.Location = new System.Drawing.Point(398, 158);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(72, 17);
             this.radioButton2.TabIndex = 1;
@@ -57,18 +59,38 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(299, 205);
+            this.button1.Location = new System.Drawing.Point(298, 257);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Ingresar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(242, 210);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Codigo";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(288, 210);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 417);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -84,6 +106,8 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

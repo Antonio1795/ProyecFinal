@@ -16,5 +16,29 @@ namespace ProyecFinal
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(radioButton1.Checked == true)
+            {
+                if(textBox1.Text == "Admin")
+                {
+                    label1.Text = "form uno";
+
+                }
+            }
+            else if(radioButton2.Checked == true)
+            {
+                if(textBox1.Text == "Usu")
+                {
+                    label1.Text = "form dos";
+                }
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
