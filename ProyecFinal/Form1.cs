@@ -23,15 +23,16 @@ namespace ProyecFinal
             {
                 if(textBox1.Text == "Admin")
                 {
-                    label1.Text = "form uno";
-
+                    FormAdministrador adm = new FormAdministrador();
+                    adm.Show();
                 }
             }
             else if(radioButton2.Checked == true)
             {
                 if(textBox1.Text == "Usu")
                 {
-                    label1.Text = "form dos";
+                    FormEmpleado empl = new FormEmpleado();
+                    empl.Show();
                 }
             }
         }
