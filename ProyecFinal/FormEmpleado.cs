@@ -46,7 +46,7 @@ namespace ProyecFinal
                 }
                 else
                 {
-                    label7.Text = "El nit ingreado no existe";
+                    label7.Text = "El nit ingreado no existe, cree uno nuevo";
                 }
 
             }
