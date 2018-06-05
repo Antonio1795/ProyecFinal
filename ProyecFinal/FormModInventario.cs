@@ -13,6 +13,7 @@ namespace ProyecFinal
 {
     public partial class FormModInventario : Form
     {
+        List<Inventario> invent = new List<Inventario>();
         public FormModInventario()
         {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace ProyecFinal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Inventario> invent = new List<Inventario>();
+            
 
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
@@ -46,7 +47,7 @@ namespace ProyecFinal
 
         private void button2_Click(object sender, EventArgs e)
         {
-            List<Inventario> invent = new List<Inventario>();
+            
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
@@ -70,6 +71,36 @@ namespace ProyecFinal
                 }
 
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
+            FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+
+            string nombcambiar = textBox1.Text;
+            int cantidadcambiar = Convert.ToInt16(textBox2.Text);
+            Decimal preciocambiar = Convert.ToDecimal(textBox3.Text);
+
+            for(int i=0; i<invent.Count; i++)
+            {
+                if(invent[i].Producto != nombcambiar)
+                {
+                    writer.WriteLine(invent[i].Producto);
+                    writer.WriteLine(invent[i].Cantidad);
+                    writer.WriteLine(invent[i].Precio);
+                }
+                else
+                {
+                    writer.WriteLine(nombcambiar);
+                    writer.WriteLine(cantidadcambiar);
+                    writer.WriteLine(preciocambiar);
+
+
+                }
+            }
+            writer.Close();
         }
     }
 }
