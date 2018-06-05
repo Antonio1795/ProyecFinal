@@ -21,5 +21,17 @@ namespace ProyecFinal
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormProducto pro = new FormProducto();
+            pro.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormModInventario mod = new FormModInventario();
+            mod.Show();
+        }
     }
 }
