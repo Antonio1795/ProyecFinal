@@ -35,6 +35,9 @@ namespace ProyecFinal
             writer.WriteLine(textBox2.Text);
             writer.WriteLine(textBox3.Text);
 
+            textBox1.Text = " ";
+            textBox2.Text = " ";
+            textBox3.Text = " ";
             writer.Close();
 
         }

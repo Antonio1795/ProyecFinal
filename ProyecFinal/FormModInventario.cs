@@ -13,7 +13,6 @@ namespace ProyecFinal
 {
     public partial class FormModInventario : Form
     {
-        List<Inventario> invent = new List<Inventario>();
         public FormModInventario()
         {
             InitializeComponent();
@@ -21,7 +20,8 @@ namespace ProyecFinal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            List<Inventario> invent = new List<Inventario>();
+
 
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
@@ -44,7 +44,23 @@ namespace ProyecFinal
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            List<Inventario> invent = new List<Inventario>();
+
+
+            string fileName2 = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
+            FileStream stream2 = new FileStream(fileName2, FileMode.Open, FileAccess.Read);
+            StreamReader reader2 = new StreamReader(stream2);
+            while (reader2.Peek() > -1)
+            {
+                Inventario invetemp = new Inventario();
+                invetemp.Producto = reader2.ReadLine();
+                invetemp.Cantidad = Convert.ToInt16(reader2.ReadLine());
+                invetemp.Precio = Convert.ToDecimal(reader2.ReadLine());
+                invent.Add(invetemp);
+            }
+            reader2.Close();
+
+
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
@@ -72,6 +88,21 @@ namespace ProyecFinal
 
         private void button3_Click(object sender, EventArgs e)
         {
+            List<Inventario> invent = new List<Inventario>();
+
+
+            string fileName2 = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
+            FileStream stream2 = new FileStream(fileName2, FileMode.Open, FileAccess.Read);
+            StreamReader reader2 = new StreamReader(stream2);
+            while (reader2.Peek() > -1)
+            {
+                Inventario invetemp = new Inventario();
+                invetemp.Producto = reader2.ReadLine();
+                invetemp.Cantidad = Convert.ToInt16(reader2.ReadLine());
+                invetemp.Precio = Convert.ToDecimal(reader2.ReadLine());
+                invent.Add(invetemp);
+            }
+            reader2.Close();
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter writer = new StreamWriter(stream);
@@ -92,6 +123,9 @@ namespace ProyecFinal
                 writer.WriteLine(invent[i].Cantidad);
                 writer.WriteLine(invent[i].Precio);
             }
+            textBox1.Text = " ";
+            textBox2.Text = " ";
+            textBox3.Text = " ";
             writer.Close();
         }
     }

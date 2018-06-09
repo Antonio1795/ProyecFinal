@@ -29,7 +29,12 @@ namespace ProyecFinal
             writer.WriteLine(textBox4.Text);
 
             label5.Text = "Cliente agregado satisfactoriamente";
+            textBox1.Text = " ";
+            textBox2.Text = " ";
+            textBox3.Text = " ";
+            textBox4.Text = " ";
             writer.Close();
+            
         }
 
        
