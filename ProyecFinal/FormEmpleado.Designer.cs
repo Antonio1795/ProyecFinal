@@ -182,6 +182,7 @@
             this.button3.TabIndex = 15;
             this.button3.Text = "Crear Nuevo Cliente";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -196,7 +197,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(239, 63);
+            this.label7.Location = new System.Drawing.Point(206, 59);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 17;

@@ -13,7 +13,7 @@ namespace ProyecFinal
 {
     public partial class FormEmpleado : Form
     {
-        List<Clientes> clie = new List<Clientes>();
+       
         public FormEmpleado()
         {
             InitializeComponent();
@@ -21,6 +21,7 @@ namespace ProyecFinal
 
         private void button4_Click(object sender, EventArgs e)
         {
+            List<Clientes> clie = new List<Clientes>();
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Clientes.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
@@ -37,19 +38,53 @@ namespace ProyecFinal
 
             for(int i=0; i<clie.Count; i++)
             {
-                if (textBox1.Text == clie[i].Nit)
+                if ( textBox1.Text == clie[i].Nit)
                 {
+                    int pos = 0;
+                    for (int j = 0; j < clie.Count; j++)
+                    {
+                        if (textBox1.Text == clie[j].Nit)
+                        {
+                            pos = j;
+                        }
+                    }
+
+                    List<Clientes> cli = new List<Clientes>();
+                    Clientes ct = new Clientes();
+
+                    ct.Nit = clie[pos].Nit;
+                    ct.Nombre = clie[pos].Nombre;
+                    ct.Apellido = clie[pos].Apellido;
+                    ct.Direccion = clie[pos].Direccion;
+                    cli.Add(ct);
+
+
                     dataGridView2.DataSource = null;
                     dataGridView2.Refresh();
-                    dataGridView2.DataSource = clie;
+                    dataGridView2.DataSource = cli;
                     dataGridView2.Refresh();
+                    
+
+                    label7.Text = "Nit encontrado";
+                    break;
                 }
                 else
                 {
-                    label7.Text = "El nit ingreado no existe, cree uno nuevo";
+                    dataGridView2.DataSource = null;
+                    dataGridView2.Refresh();
+                    label7.Text = "No encontrado";
                 }
 
             }
+
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormNuevoCliente clientenuevo = new FormNuevoCliente();
+            clientenuevo.Show();
+        }
+
+     
     }
 }
