@@ -73,5 +73,106 @@ namespace ProyecFinal
             dataGridView3.Refresh();
 
         }
+
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            List<Ventas> ven = new List<Ventas>();
+            List<VentasEmpleadosporMes> vent2 = new List<VentasEmpleadosporMes>();
+            List<Empleados> emple = new List<Empleados>();
+
+            string fileName2 = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Ventas.txt";
+            FileStream stream2 = new FileStream(fileName2, FileMode.Open, FileAccess.Read);
+            StreamReader reader2 = new StreamReader(stream2);
+            while (reader2.Peek() > -1)
+            {
+                Ventas vetemp = new Ventas();
+                vetemp.Nitcliente = reader2.ReadLine();
+                vetemp.Codigoempleado = reader2.ReadLine();
+                vetemp.Producto = reader2.ReadLine();
+                vetemp.Cantidad = Convert.ToInt16(reader2.ReadLine());
+                vetemp.Precio = Convert.ToDecimal(reader2.ReadLine());
+                vetemp.Fechaventa = Convert.ToDateTime(reader2.ReadLine());
+                ven.Add(vetemp);
+            }
+            reader2.Close();
+
+            string fileName3 = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Empleados.txt";
+            FileStream stream3 = new FileStream(fileName3, FileMode.Open, FileAccess.Read);
+            StreamReader reader3 = new StreamReader(stream3);
+            while (reader3.Peek() > -1)
+            {
+                Empleados emtemp = new Empleados();
+                emtemp.Codigo = reader3.ReadLine();
+                emtemp.Nombre = reader3.ReadLine();
+                emtemp.Apellido = reader3.ReadLine();
+                emple.Add(emtemp);
+            }
+            reader3.Close();
+
+
+            vent2.Capacity = ven.Count;
+            for (int i = 0; i < ven.Count; i++)
+            {
+                for (int j = 0; j < emple.Count; j++)
+                {
+                    if (ven[i].Fechaventa.Month.ToString() == comboBox2.Text)
+                    {
+                        if (ven[i].Codigoempleado == emple[j].Codigo)
+                        {
+                            vent2[i].Codigoempleado = emple[j].Codigo;
+                            vent2[i].Cantidadvendida = vent2[i].Cantidadvendida + ven[i].Cantidad;
+                            vent2[i].Totalvendido = vent2[i].Totalvendido + ven[i].Precio;
+                            vent2[i].Mes1 = Convert.ToInt16(comboBox2.Text);
+                        }
+                    }
+                }
+                }
+        
+            
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<Ventas> ven = new List<Ventas>();
+            List<Ventas> vent2 = new List<Ventas>();
+            string fileName2 = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Ventas.txt";
+            FileStream stream2 = new FileStream(fileName2, FileMode.Open, FileAccess.Read);
+            StreamReader reader2 = new StreamReader(stream2);
+            while (reader2.Peek() > -1)
+            {
+                Ventas vetemp = new Ventas();
+                vetemp.Nitcliente = reader2.ReadLine();
+                vetemp.Codigoempleado = reader2.ReadLine();
+                vetemp.Producto = reader2.ReadLine();
+                vetemp.Cantidad = Convert.ToInt16(reader2.ReadLine());
+                vetemp.Precio = Convert.ToDecimal(reader2.ReadLine());
+                vetemp.Fechaventa = Convert.ToDateTime(reader2.ReadLine());
+                ven.Add(vetemp);
+            }
+            reader2.Close();
+            
+
+
+            for (int i = 0; i < ven.Count; i++)
+            {
+
+                if (true)
+                {
+
+                }
+            }
+
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                comboBox2.Items.Add(i + 1);
+            }
+        }
     }
 }

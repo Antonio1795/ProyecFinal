@@ -12,12 +12,15 @@ namespace ProyecFinal
         int cantidad;
         string nitcliente;
         string codigoempleado;
+        Decimal precio;
         DateTime fechaventa;
+        
 
         public string Producto { get => producto; set => producto = value; }
         public int Cantidad { get => cantidad; set => cantidad = value; }
         public string Nitcliente { get => nitcliente; set => nitcliente = value; }
         public string Codigoempleado { get => codigoempleado; set => codigoempleado = value; }
         public DateTime Fechaventa { get => fechaventa; set => fechaventa = value; }
+        public decimal Precio { get => precio; set => precio = value; }
     }
 }
