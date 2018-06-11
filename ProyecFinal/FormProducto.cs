@@ -13,7 +13,9 @@ namespace ProyecFinal
 {
     public partial class FormProducto : Form
     {
-        
+
+
+
         public FormProducto()
         {
             InitializeComponent();
@@ -21,23 +23,28 @@ namespace ProyecFinal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Inventario invetemp = new Inventario();
+            
 
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Append, FileAccess.Write);
             StreamWriter writer = new StreamWriter(stream);
 
-            invetemp.Producto = textBox1.Text;
-            invetemp.Cantidad = Convert.ToInt16(textBox2.Text);
-            invetemp.Precio = Convert.ToDecimal(textBox3.Text);
+          
+                    Inventario invetemp = new Inventario();
+                    invetemp.Producto = textBox1.Text;
+                    invetemp.Cantidad = Convert.ToInt16(textBox2.Text);
+                    invetemp.Precio = Convert.ToDecimal(textBox3.Text);
 
-            writer.WriteLine(textBox1.Text);
-            writer.WriteLine(textBox2.Text);
-            writer.WriteLine(textBox3.Text);
+                    writer.WriteLine(textBox1.Text);
+                    writer.WriteLine(textBox2.Text);
+                    writer.WriteLine(textBox3.Text);
 
-            textBox1.Text = " ";
-            textBox2.Text = " ";
-            textBox3.Text = " ";
+                    textBox1.Text = " ";
+                    textBox2.Text = " ";
+                    textBox3.Text = " ";
+                    
+
+            
             writer.Close();
 
         }
@@ -45,6 +52,7 @@ namespace ProyecFinal
         private void button2_Click(object sender, EventArgs e)
         {
             List<Inventario> inve = new List<Inventario>();
+
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);

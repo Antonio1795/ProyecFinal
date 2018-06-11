@@ -123,10 +123,11 @@ namespace ProyecFinal
                 writer.WriteLine(invent[i].Cantidad);
                 writer.WriteLine(invent[i].Precio);
             }
+            writer.Close();
             textBox1.Text = " ";
             textBox2.Text = " ";
             textBox3.Text = " ";
-            writer.Close();
+            
         }
     }
 }
