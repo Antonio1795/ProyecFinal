@@ -9,13 +9,12 @@ namespace ProyecFinal
     class VentasEmpleadosporMes
     {
         string codigoempleado;
-        int mes;
-        int cantidadvendida=0;
-        Decimal totalvendido=0;
+        int cantidadvendida;
+        Decimal totalvendido;
 
         public string Codigoempleado { get => codigoempleado; set => codigoempleado = value; }
        public int Cantidadvendida { get => cantidadvendida; set => cantidadvendida = value; }
         public decimal Totalvendido { get => totalvendido; set => totalvendido = value; }
-        public int Mes1 { get => mes; set => mes = value; }
+        
     }
 }

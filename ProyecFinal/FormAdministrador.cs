@@ -12,13 +12,7 @@ namespace ProyecFinal
 {
     public partial class FormAdministrador : Form
     {
-        List<Ventas> ven = new List<Ventas>();
-        List<VentasEmpleadosporMes> vent2 = new List<VentasEmpleadosporMes>();
-        List<Empleados> emple = new List<Empleados>();
-        List<Mes> meusar = new List<Mes>();
-        List<Inventario> inven = new List<Inventario>();
-        List<VentatotaldelMes> ventasmes = new List<VentatotaldelMes>();
-
+        
 
         public FormAdministrador()
         {
@@ -42,52 +36,17 @@ namespace ProyecFinal
             mod.Show();
         }
 
-       
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-           
-            
-
-            
-            for (int i = 0; i < ven.Count; i++)
-            {
-                for (int j = 0; j < emple.Count; j++)
-                {
-                    if (ven[i].Fechaventa.Month.ToString() == comboBox2.Text)
-                    {
-                        if (ven[i].Codigoempleado == emple[j].Codigo)
-                        {
-                            VentasEmpleadosporMes vetemporalmes = new VentasEmpleadosporMes();
-                            vetemporalmes.Codigoempleado = emple[j].Codigo;
-                            int sumcont = 0;
-                            Decimal sumprecio = 0;
-                            for (int k = 0; k < ven.Count; k++)
-                            {
-                                sumcont = ven[k].Cantidad + sumcont;
-                                sumprecio = sumprecio + ven[k].Precio;
-                            }
-                            vetemporalmes.Cantidadvendida = sumcont;
-                            vetemporalmes.Totalvendido = sumprecio;
-                            vetemporalmes.Mes1 = Convert.ToInt16(comboBox2.Text);
-                            vent2.Add(vetemporalmes);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            dataGridView4.DataSource = null;
-            dataGridView4.Refresh();
-            dataGridView4.DataSource = vent2;
-            dataGridView4.Refresh();
-
-        }
-
-
+      
         int meelegido;
         private void button8_Click(object sender, EventArgs e)
         {
+            List<Ventas> ven = new List<Ventas>();
+            List<VentasEmpleadosporMes> vent2 = new List<VentasEmpleadosporMes>();
+            List<Empleados> emple = new List<Empleados>();
+            List<Mes> meusar = new List<Mes>();
+            List<Inventario> inven = new List<Inventario>();
+            List<VentatotaldelMes> ventasmes = new List<VentatotaldelMes>();
+
             string fileName = @"C:\Users\Antonio\source\repos\ProyecFinal\ProyecFinal\bin\Debug\Inventario.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
@@ -151,6 +110,15 @@ namespace ProyecFinal
                 ventasmes.Add(ventmestemporal);
             }
 
+            for (int i = 0; i < emple.Count; i++)
+            {
+                VentasEmpleadosporMes empleadomes = new VentasEmpleadosporMes();
+                empleadomes.Codigoempleado = emple[i].Codigo;
+                empleadomes.Cantidadvendida = 0;
+                empleadomes.Totalvendido = 0;
+                vent2.Add(empleadomes);
+            }
+
             for (int i = 0; i < 12; i++)
             {
                 if(Convert.ToInt16(comboBox2.Text) == i)
@@ -176,11 +144,56 @@ namespace ProyecFinal
                 }
             }
 
+            //Ventas organizadas por empleados +vendedor
+            for (int i = 0; i < ven.Count; i++) // revisa todas las ventas hechas de cierto mes 
+            {
+                if (ven[i].Fechaventa.Month == meelegido)
+                {
+                    for (int j = 0; j < vent2.Count; j++)
+                    {
+                        if (ven[i].Codigoempleado == vent2[j].Codigoempleado)
+                        {
+                            vent2[j].Cantidadvendida = vent2[j].Cantidadvendida + ven[i].Cantidad;
+                            vent2[j].Totalvendido = vent2[j].Totalvendido + ven[i].Precio;
+                        }
+                    }
+                }
+            }
+           
+
+            List<Inventario> inven2menor = new List<Inventario>();
+            Inventario intemp = new Inventario();
+            int menor = 1;
+            for (int i = 0; i < inven.Count; i++)
+            {
+                if (inven[i].Cantidad < inven[menor].Cantidad)
+                {
+                    menor = i;
+                }
+
+            }
+
+            intemp.Producto = inven[menor].Producto;
+            intemp.Cantidad = inven[menor].Cantidad;
+            intemp.Precio = inven[menor].Precio;
+            inven2menor.Add(intemp);
+            dataGridView3.DataSource = null;
+            dataGridView3.Refresh();
+            dataGridView3.DataSource = inven2menor;
+            dataGridView3.Refresh();
+
+            
+
 
             dataGridView2.DataSource = null;
             dataGridView2.Refresh();
             dataGridView2.DataSource = ventasmes;
             dataGridView2.Refresh();
+
+            dataGridView4.DataSource = null;
+            dataGridView4.Refresh();
+            dataGridView4.DataSource = vent2;
+            dataGridView4.Refresh();
 
 
         }
